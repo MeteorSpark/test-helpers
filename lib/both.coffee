@@ -38,3 +38,20 @@ _.extend TestHelpers.prototype,
     , @options.timeout
 
     onCompleteOnce
+
+  getOnCompleteOnceOrTimeoutWithUser: (test, onComplete, user, password, test_specific_computation, cb) ->
+    Meteor.loginWithPassword user, password, (err) =>
+      if (err)
+        test.fail("Can't login")
+        onComplete()
+
+        return
+
+      onCompleteOnceOrTimeout = @getOnCompleteOnceOrTimeout test, onComplete, test_specific_computation
+
+      onCompleteOnceOrTimeoutWithUser = (cb) ->
+        Meteor.logout()
+
+        onCompleteOnceOrTimeout(cb)
+
+      cb(onCompleteOnceOrTimeoutWithUser)

@@ -102,10 +102,21 @@ Tinytest.addAsync('Test Example', function (test, onComplete) {
 
 **onCompleteOnce = th.getOnCompleteOnceOrTimeout(test, onComplete[, test\_specific\_computations]) Anywhere**
 
-Same as th.getOnCompleteOnce but you need to pass the test object as the first
-param.
+Same as th.getOnCompleteOnce but will fail automatically if timeout, as defined
+in the timeout option.
 
-Will fail automatically if timeout, as defined in the timeout option.
+need to pass the test object as the first param.
+
+**th.getOnCompleteOnceOrTimeoutWithUser(test, onComplete, user, password[, test\_specific\_computations], cb) Anywhere**
+
+Same as th.getOnCompleteOnceOrTimeout but will login with user and logout
+onComplete.
+
+Unlike the previous methods onCompleteOnce is returned by the method but passed
+to cb as its second param upon successful login.
+
+If login failed the test will fail, cb won't be called, and non of the
+test\_specific\_computations will run.
 
 ## Credits
 

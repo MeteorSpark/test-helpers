@@ -1,7 +1,7 @@
 Package.describe({
   name: 'meteorspark:test-helpers',
   summary: 'A collection of helpers for Meteor TinyTest based unittesting',
-  version: '0.1.0',
+  version: '0.2.0',
   git: 'https://github.com/MeteorSpark/test-helpers'
 });
 
@@ -15,6 +15,9 @@ Package.onUse(function (api) {
   api.use('coffeescript', both);
   api.use('underscore', both);
   api.use('meteor', both);
+
+  api.use('accounts-base', both);
+  api.use('accounts-password', both);
 
   api.add_files('lib/both.coffee', server);
   api.add_files('lib/both.coffee', client, {bare: true});
